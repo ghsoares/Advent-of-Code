@@ -7,7 +7,14 @@ const folders = source
 	.map(f => f.name);
 const current = folders[folders.length - 1];
 
-const cmd = `cd ./${current} && node index.js`;
+let day = process.argv[2];
+if (day) {
+	day = `day${day}`;
+} else {
+	day = current;
+}
+
+const cmd = `cd ./${day} && node index.js`;
 console.log(`executing ${cmd}`);
 exec(cmd, (error, stdout, stderr) => {
 	process.stdout.write(stdout);
