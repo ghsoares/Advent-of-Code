@@ -1,11 +1,14 @@
 import path from 'path';
 import fs from 'fs';
 
-export const loadInputLines = () => {
+export const loadInput = () => {
 	const folder = process.cwd();
 	const inputPath = path.join(folder, "input.txt");
-	const source = fs.readFileSync(inputPath, 'utf-8');
-	return source.split(/\r\n|\n/g);
+	return fs.readFileSync(inputPath, 'utf-8');
+}
+
+export const loadInputLines = () => {
+	return loadInput().split(/\r\n|\n/g);
 }
 
 export const colorize = (str, color = [0, 0, 0]) => {
