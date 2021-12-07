@@ -1,6 +1,6 @@
 // https://adventofcode.com/2021/day/5
 
-import { colorize, loadInputLines } from '../utils.js';
+import { colorize, loadInputLines } from '../../utils.js';
 
 const inputLines = loadInputLines();
 const segments = inputLines.map(l => l.split(" -> ").map(p => p.split(",").map(n => Number(n))));

@@ -1,6 +1,6 @@
 // https://adventofcode.com/2021/day/2
 
-import { loadInputLines } from '../utils.js';
+import { loadInputLines } from '../../utils.js';
 
 const inputLines = loadInputLines();
 const numSteps = inputLines.length;

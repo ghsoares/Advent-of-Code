@@ -1,6 +1,6 @@
 // https://adventofcode.com/2021/day/6
 
-import { loadInput } from '../utils.js';
+import { loadInput } from '../../utils.js';
 
 const input = loadInput();
 const initialFishes = input.split(',').map(f => Number(f));

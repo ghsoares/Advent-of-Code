@@ -1,6 +1,6 @@
 // https://adventofcode.com/2021/day/1
 
-import { loadInputLines } from '../utils.js';
+import { loadInputLines } from '../../utils.js';
 
 const inputLines = loadInputLines().map(line => Number(line));
 const inputLength = inputLines.length;

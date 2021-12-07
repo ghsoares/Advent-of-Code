@@ -1,6 +1,6 @@
 // https://adventofcode.com/2021/day/7
 
-import { loadInput } from '../utils.js';
+import { loadInput } from '../../utils.js';
 
 const input = loadInput();
 const positions = input.split(`,`).map(p => Number(p));

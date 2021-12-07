@@ -1,7 +1,7 @@
 // https://adventofcode.com/2021/day/3
 // First part
 
-import { loadInputLines } from '../utils.js';
+import { loadInputLines } from '../../utils.js';
 
 const inputLines = loadInputLines();
 const binLen = inputLines[0].length;

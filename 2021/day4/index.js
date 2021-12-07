@@ -1,6 +1,6 @@
 // https://adventofcode.com/2021/day/4
 
-import { loadInputLines } from '../utils.js';
+import { loadInputLines } from '../../utils.js';
 
 const inputLines = loadInputLines().filter(l => l !== "");
 const sortOrder = inputLines.splice(0, 1)[0].split(",").map(n => parseInt(n));
