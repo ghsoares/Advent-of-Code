@@ -6,13 +6,21 @@ import { exec } from 'child_process';
 
 const createChallengeFolder = (year, day) => {
 	const folder = `${year}/day${day}`;
+	const indexPath = path.join(folder, `index.js`);
+	const samplePath = path.join(folder, `sample.txt`);
+	const inputPath = path.join(folder, `input.txt`);
 
-	const index = `// https://adventofcode.com/${year}/day/${day}\nimport { loadInputLines } from '../../utils.js';`;
+	const index = `// https://adventofcode.com/${year}/day/${day}
+import { config, MODE_INPUT, MODE_SAMPLE } from '../../utils.js';
+config.mode = MODE_SAMPLE;` + '\n'.repeat(10);
 
 	if (!fs.existsSync(folder)) fs.mkdirSync(folder);
 
-	fs.writeFileSync(path.join(folder, `index.js`), index);
-	fs.writeFileSync(path.join(folder, `input.txt`), '');
+	if (!fs.existsSync(indexPath)) fs.writeFileSync(indexPath, index);
+	if (!fs.existsSync(samplePath)) fs.writeFileSync(samplePath, '');
+	if (!fs.existsSync(inputPath)) fs.writeFileSync(inputPath, '');
+
+	exec(`code ${path.join(folder, 'index.js')}`);
 }
 
 const runChallenge = (year, day) => {
