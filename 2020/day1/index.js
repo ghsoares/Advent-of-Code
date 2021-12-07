@@ -1,5 +1,6 @@
 // https://adventofcode.com/2020/day/1
-import { loadInputLines } from '../../utils.js';
+import { loadInputLines, config } from '../../utils.js';
+config.sampleMode = false;
 const numbers = loadInputLines().map(l => Number(l));
 const numNumbers = numbers.length;
 

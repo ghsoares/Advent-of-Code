@@ -1,6 +1,6 @@
 // https://adventofcode.com/2020/day/4
-import { config, loadInput, MODE_INPUT, MODE_SAMPLE } from '../../utils.js';
-config.mode = MODE_INPUT;
+import { config, loadInput } from '../../utils.js';
+config.sampleMode = false;
 
 const input = loadInput();
 const batches = input.split(/\n{2}/g);

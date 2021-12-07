@@ -11,8 +11,8 @@ const createChallengeFolder = (year, day) => {
 	const inputPath = path.join(folder, `input.txt`);
 
 	const index = `// https://adventofcode.com/${year}/day/${day}
-import { config, MODE_SAMPLE, MODE_INPUT } from '../../utils.js';
-config.mode = MODE_SAMPLE;` + '\n'.repeat(10);
+import { config } from '../../utils.js';
+config.sampleMode = true;` + '\n'.repeat(10);
 
 	if (!fs.existsSync(folder)) fs.mkdirSync(folder);
 
