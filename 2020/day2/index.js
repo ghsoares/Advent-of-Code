@@ -1,5 +1,5 @@
 // https://adventofcode.com/2020/day/2
-import { config, loadInputLines, MODE_INPUT, MODE_SAMPLE } from '../../utils.js';
+import { config, loadInputLines, MODE_SAMPLE, MODE_INPUT } from '../../utils.js';
 config.mode = MODE_INPUT;
 
 const passwords = loadInputLines().map(l => {

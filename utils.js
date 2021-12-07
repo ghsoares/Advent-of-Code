@@ -11,7 +11,7 @@ export let config = {
 export const loadInput = () => {
 	const folder = process.cwd();
 	const inputPath = path.join(folder, config.mode === MODE_SAMPLE ? "sample.txt" : "input.txt");
-	return fs.readFileSync(inputPath, 'utf-8');
+	return fs.readFileSync(inputPath, 'utf-8').replace(/\r\n/g, '\n');
 }
 
 export const loadInputLines = () => {
