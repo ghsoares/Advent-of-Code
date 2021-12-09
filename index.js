@@ -10,6 +10,11 @@ const createChallengeFolder = (year, day) => {
 	const samplePath = path.join(folder, `sample.txt`);
 	const inputPath = path.join(folder, `input.txt`);
 
+	if (year < 2015 || year > 2021) throw new Error(`Year must be between 2015 and 2021`);
+	if (day < 1 || day > 25) throw new Error(`Day must be between 1 and 25`);
+
+	console.log(`Creating ${year}/day${day}`);
+
 	const index = `// https://adventofcode.com/${year}/day/${day}
 import { config } from '../../utils.js';
 config.sampleMode = true;` + '\n'.repeat(10);
@@ -40,21 +45,21 @@ yargs(hideBin(process.argv))
 	.command('create', 'Creates the challenge folder', {
 		year: {
 			describe: 'The challenge year, defaults to the current year',
-			default: -1,
+			default: null,
 			alias: 'y',
 			type: 'number'
 		},
 		day: {
 			describe: 'The challenge day, defaults to the current day',
-			default: -1,
+			default: null,
 			alias: 'd',
 			type: 'number'
 		},
 
 	}, argv => {
 		let { day, year } = argv;
-		if (year === -1) year = new Date(Date.now()).getFullYear();
-		if (day === -1) day = new Date(Date.now()).getDate();
+		if (year === null) year = new Date(Date.now()).getFullYear();
+		if (day === null) day = new Date(Date.now()).getDate();
 
 		createChallengeFolder(year, day);
 	})
@@ -62,21 +67,21 @@ yargs(hideBin(process.argv))
 	.command('run', 'Runs a challenge', {
 		year: {
 			describe: 'The challenge year, defaults to the current year',
-			default: -1,
+			default: null,
 			alias: 'y',
 			type: 'number'
 		},
 		day: {
 			describe: 'The challenge day, defaults to the current day',
-			default: -1,
+			default: null,
 			alias: 'd',
 			type: 'number'
 		},
 
 	}, argv => {
 		let { day, year } = argv;
-		if (year === -1) year = new Date(Date.now()).getFullYear();
-		if (day === -1) day = new Date(Date.now()).getDate();
+		if (year === null) year = new Date(Date.now()).getFullYear();
+		if (day === null) day = new Date(Date.now()).getDate();
 
 		runChallenge(year, day);
 	})
