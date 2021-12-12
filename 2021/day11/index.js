@@ -1,6 +1,6 @@
 // https://adventofcode.com/2021/day/11
 import { colorize, config, loadInputLines } from '../../utils.js';
-config.sampleMode = true;
+config.sampleMode = false;
 
 const input = loadInputLines();
 const gridWidth = 10;
@@ -8,8 +8,8 @@ const gridHeight = 10;
 
 let grid = input.map(l => l.split('').map(c => Number(c)));
 let gridCopy = grid.slice().map(l => l.slice());
-
 let flashes = 0;
+let tickFlashes = 0;
 
 const applyCopy = () => {
 	for (let y = 0; y < gridHeight; y++) {
@@ -19,7 +19,9 @@ const applyCopy = () => {
 	}
 }
 
-const cellChanged = (x, y) => grid[y][x] !== gridCopy[y][x];
+const cellFlashed = (x, y) => gridCopy[y][x] > 0 && grid[y][x] === 0;
+
+const outOfBounds = (x, y) => x < 0 || x >= gridWidth || y < 0 || y >= gridHeight;
 
 const tick = () => {
 	for (let y = 0; y < gridHeight; y++) {
@@ -29,26 +31,28 @@ const tick = () => {
 		}
 	}
 
+	tickFlashes = 0;
+
 	while (true) {
 		let modified = false;
 
 		for (let y = 0; y < gridHeight; y++) {
 			for (let x = 0; x < gridWidth; x++) {
-				if (grid[y][x] === 0) continue;
-				for (let iy = y - 1; iy <= y + 1; iy++) {
-					for (let ix = x - 1; ix <= x + 1; ix++) {
-						if (ix < 0 || ix >= gridWidth) continue;
-						if (iy < 0 || iy >= gridHeight) continue;
-						if (iy === y || ix === x) continue;
+				if (cellFlashed(x, y)) {
+					for (let iy = y - 1; iy <= y + 1; iy++) {
+						for (let ix = x - 1; ix <= x + 1; ix++) {
+							if (outOfBounds(ix, iy)) continue;
+							if (grid[iy][ix] === 0) continue;
 
-						if (cellChanged(ix, iy)) {
-							if (grid[iy][ix] === 0) {
-								grid[y][x]++;
-								if (grid[y][x] > 9) grid[y][x] = 0;
-								modified = true;
-							}
+							grid[iy][ix]++;
+							if (grid[iy][ix] > 9) grid[iy][ix] = 0;
 						}
 					}
+
+					gridCopy[y][x] = grid[y][x];
+					modified = true;
+					flashes++;
+					tickFlashes++;
 				}
 			}
 		}
@@ -75,12 +79,15 @@ const debug = () => {
 }
 
 debug();
-for (let i = 0; i < 3; i++) {
+let steps = 0;
+while (true) {
+	steps++;
 	tick();
 	debug();
+	if (tickFlashes === gridWidth * gridHeight) break;
 }
 
-console.log(flashes);
+console.log(steps);
 
 
 
